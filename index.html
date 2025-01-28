@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App | By PurgyXsh</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        }
+    
+        body {
+        height: 100vh;
+        background: #000;
+        position: relative;
+        overflow: hidden;
+        }
+    
+        .bg-img {
+        background-image: url('bg.gif');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        z-index: -1;
+        }
+    
+        .container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        }
+    
+        .content-container {
+        width: 50%;
+        height: 100%;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        position: relative;
+        }
+    
+        .welcome-text {
+        color: #fff;
+        font-size: 35px;
+        border-right: 3px solid #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-shadow: 2px 2px 4px rgb(0, 132, 255);
+        animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+    
+        .auther {
+        opacity: 0;
+        animation: slideUp 0.5s ease-out 3s forwards;
+        color: #fff;
+        margin-top: 10px;
+        align-self: flex-end;
+        font-size: 15px;
+        }
+    
+        .search-box {
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 20px;
+        border: none;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0);
+        transition: all 0.3s ease;
+        color: #fff;
+        margin-bottom: 30px;
+        margin-right: 60px;
+        margin-top: 30px;
+        /* opacity: 0; */
+        animation: slideUp 0.5s ease-out 4s forwards;
+        }
+    
+        .search-box:focus {
+        outline: none;
+        box-shadow: 0 0 20px rgba(0, 195, 255, 0.589);
+        transform: scale(1.02);
+        }
+    
+        .search-button {
+        width: 150px;
+        padding: 10px;
+        font-size: 20px;
+        border: none;
+        border-radius: 100px;
+        background: #0066ff;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        /* opacity: 0; */
+        margin-right: 60px;
+    
+        animation: slideUp 0.5s ease-out 4.5s forwards;
+        }
+    
+        .search-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+    
+        .search-button:hover {
+        background: #0052cc;
+        transform: scale(1.05);
+        }
+    
+        @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+        }
+    
+        @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: #fff }
+        }
+    
+        @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+        }
+    
+        @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+    
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+        .container {
+            justify-content: center;
+        }
+    
+        .content-container {
+            width: 100%;
+            padding: 20px;
+            align-items: center;
+            text-align: center;
+        }
+    
+        .welcome-text {
+            font-size: 28px;
+            border-right: none;
+            white-space: normal;
+            animation: none;
+        }
+    
+        .auther {
+            align-self: center;
+        }
+    
+        .search-box {
+            width: 100%;
+            font-size: 18px;
+            margin-right: 0px;
+        }
+    
+        .search-button {
+            width: 100%;
+            font-size: 18px;
+            margin-right: 0px;
+        }
+        }
+    
+        @media (max-width: 480px) {
+        .welcome-text {
+            font-size: 24px;
+        }
+    
+        .search-box {
+            font-size: 16px;
+        }
+    
+        .search-button {
+            font-size: 16px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-img"></div>
+    <div class="container">
+        <div class="content-container">
+            <h2 class="welcome-text">Welcome to News App...</h2>
+            <h4 class="auther"><i>By PurgyXsh</i></h4>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" placeholder="Enter your keyword..." aria-label="Search news">
+                <button class="search-button" id="searchButton">Search News</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const keyword = document.getElementById('searchInput').value.trim();
+            if (keyword) {
+                // Store the keyword in sessionStorage
+                sessionStorage.setItem('searchKeyword', keyword);
+                // Redirect to results page
+                window.location.href = 'results.html';
+            }
+        });
+
+        // Allow Enter key to trigger search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('searchButton').click();
+            }
+        });
+    </script>
+</body>
+</html>
